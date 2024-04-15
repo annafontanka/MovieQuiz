@@ -18,7 +18,9 @@ final class MovieQuizViewController: UIViewController {
       let text: String
       let buttonText: String
     }
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     private let questions: [QuizQuestion] = [
             QuizQuestion(
                 image: "The Godfather",
@@ -140,7 +142,7 @@ final class MovieQuizViewController: UIViewController {
     }
 
     private func showAnswerResult(isCorrect: Bool) {
-        if isCorrect { 
+        if isCorrect {
                correctAnswers += 1
            }
            
