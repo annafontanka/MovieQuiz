@@ -2,18 +2,18 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController {
     
-    struct QuizQuestion {
+    private struct QuizQuestion {
       let image: String
       let text: String
       let correctAnswer: Bool
     }
     
-    struct QuizStepViewModel {
+    private struct QuizStepViewModel {
       let image: UIImage
       let question: String
       let questionNumber: String
     }
-    struct QuizResultsViewModel {
+    private struct QuizResultsViewModel {
       let title: String
       let text: String
       let buttonText: String
@@ -68,11 +68,12 @@ final class MovieQuizViewController: UIViewController {
     private var correctAnswers = 0
      
     
-    
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
-    
+    @IBOutlet private var questionTitleLabel: UILabel!
     @IBAction func yesButtonClicked(_ sender: Any) {
           let currentQuestion = questions[currentQuestionIndex]
           let givenAnswer = true
@@ -86,11 +87,19 @@ final class MovieQuizViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-    show(quiz: convert(model: questions[currentQuestionIndex]))
+        configureUI()
+        show(quiz: convert(model: questions[currentQuestionIndex]))
         imageView.layer.masksToBounds = true
         super.viewDidLoad()
     }
-    
+    private func configureUI() {
+        textLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
+        questionTitleLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        counterLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 24)
+        noButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 24)
+    }
+
      private func show(quiz step: QuizStepViewModel) {
      imageView.image = step.image
      textLabel.text = step.question
@@ -98,21 +107,20 @@ final class MovieQuizViewController: UIViewController {
      imageView.layer.borderWidth = 0
    }
     private func show(quiz result: QuizResultsViewModel) {
-            let alert = UIAlertController(
+    let alert = UIAlertController(
                 title: result.title,
                 message: result.text,
                 preferredStyle: .alert)
             
-            let action = UIAlertAction(title: result.buttonText, style: .default) { _ in
+     let action = UIAlertAction(title: result.buttonText, style: .default) { _ in
                 self.currentQuestionIndex = 0
                 self.correctAnswers = 0
                 let firstQuestion = self.questions[self.currentQuestionIndex]
                 let viewModel = self.convert(model: firstQuestion)
                 self.show(quiz: viewModel)
             }
-            
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+    alert.addAction(action)
+    self.present(alert, animated: true, completion: nil)
         }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
