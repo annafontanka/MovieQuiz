@@ -99,8 +99,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="noButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="orA-JG-UXC"/>
-                                                    <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yf0-5D-94y"/>
+                                                    <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Leb-BP-kAl"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQV-Lt-fmq" userLabel="Yes button">
@@ -147,7 +146,7 @@
                     <connections>
                         <outlet property="counterLabel" destination="p3D-6s-fGA" id="LAq-ee-4yd"/>
                         <outlet property="imageView" destination="3sx-TV-WzO" id="Sxi-ju-nc5"/>
-                        <outlet property="noButton" destination="Dwf-HL-irg" id="Jii-Kg-8uz"/>
+                        <outlet property="noButton" destination="Dwf-HL-irg" id="GYK-DS-9hg"/>
                         <outlet property="questionTitleLabel" destination="LHd-fy-JWB" id="xPG-c9-RrD"/>
                         <outlet property="textLabel" destination="IKb-J2-rYo" id="TrP-jO-SAQ"/>
                         <outlet property="yesButton" destination="lQV-Lt-fmq" id="d52-1c-dDr"/>

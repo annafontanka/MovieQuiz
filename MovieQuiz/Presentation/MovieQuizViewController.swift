@@ -69,35 +69,36 @@ final class MovieQuizViewController: UIViewController {
      
     
     @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var questionTitleLabel: UILabel!
+    
     @IBAction func yesButtonClicked(_ sender: Any) {
           let currentQuestion = questions[currentQuestionIndex]
           let givenAnswer = true
           showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
+    
     @IBAction func noButtonClicked(_ sender: Any) {
-            let currentQuestion = questions[currentQuestionIndex]
-            let givenAnswer = false
-            
-            showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        let currentQuestion = questions[currentQuestionIndex]
+        let givenAnswer = false
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     override func viewDidLoad() {
-        configureUI()
         show(quiz: convert(model: questions[currentQuestionIndex]))
         imageView.layer.masksToBounds = true
+        configureUI()
         super.viewDidLoad()
     }
     private func configureUI() {
         textLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
         questionTitleLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         counterLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
-        yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 24)
-        noButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 24)
+        yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        noButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
     }
 
      private func show(quiz step: QuizStepViewModel) {
@@ -161,7 +162,7 @@ final class MovieQuizViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                self.showNextQuestionOrResults()
            }
-    }
+       }
     }
 
 
