@@ -88,9 +88,9 @@
 			children = (
 				957DF27F2BD53D9B003EFED7 /* QuestionFactory.swift */,
 				95AF2DD22BE3CA370041D2C5 /* AlertPresenterProtocol.swift */,
+				95AF2DD82BE80BF80041D2C5 /* StatisticServiceProtocol.swift */,
 				95B5CD492BDEE46D001ABDD1 /* QuestionFactoryProtocol.swift */,
 				95B5CD4B2BE03454001ABDD1 /* QuestionFactoryDelegate.swift */,
-				95AF2DD82BE80BF80041D2C5 /* StatisticServiceProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

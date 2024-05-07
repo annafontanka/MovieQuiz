@@ -12,6 +12,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var currentQuestion: QuizQuestion?
     private var questionFactory: QuestionFactoryProtocol?
     private var alertPresenter : AlertPresenter?
+    private var statisticService : StatisticServiceProtocol?
     
     // MARK: - Outlets
     @IBOutlet private var noButton: UIButton!
@@ -49,7 +50,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         self.questionFactory = questionFactory
         
         questionFactory.requestNextQuestion()
-        
+        statisticService = StatisticServiceImplementation()
         super.viewDidLoad()
     }
     private func configureUI() {
@@ -91,12 +92,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.layer.borderWidth = 0
         
         if currentQuestionIndex == questionsAmount - 1 {
-            let text = correctAnswers == questionsAmount ?
-            "Поздравляем, вы ответили на 10 из 10!" :
-            "Вы ответили на \(correctAnswers) из 10, попробуйте ещё раз!"
+            
+            statisticService?.store(correct: correctAnswers, total: questionsAmount)
+            
+            let message = """
+                        Ваш результат: \(correctAnswers)/\(questionsAmount)
+                        Количество сыгранных квизов: \(statisticService?.gamesCount ?? 0)
+                        Рекорд: \(statisticService?.bestGame.correct ?? 0)/\(statisticService?.bestGame.total ?? 0) (\(statisticService?.bestGame.date.dateTimeString ?? Date().dateTimeString))
+                        Средняя точность: \(String(format: "%.2f", statisticService?.totalAccuracy ?? 0))%
+                        """
             let alertModel = AlertModel(
                 title: "Этот раунд окончен!",
-                message: text,
+                message: message,
                 buttonText: "Сыграть ещё раз",
                 completion: { [weak self] in
                     guard let self  else  { return }
@@ -128,16 +135,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             
             guard let self = self else { return }
             
-            
             self.showNextQuestionOrResults()
         }
-            
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//
-//            [weak self] in
-//            //guard self != nil else { return }
-
-        
     }
 }
 
