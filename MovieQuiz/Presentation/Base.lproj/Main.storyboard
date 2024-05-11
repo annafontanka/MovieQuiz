@@ -133,10 +133,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="b26-TV-nsN">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
+                            <constraint firstItem="b26-TV-nsN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="514-bJ-9mR"/>
+                            <constraint firstItem="b26-TV-nsN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="75k-Rk-Ice"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ahd-OQ-cgz" secondAttribute="trailing" constant="20" id="GBU-UT-zqT" userLabel="Safe Area.trailing = Stack View.trailing + 20"/>
                             <constraint firstItem="Ahd-OQ-cgz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="K11-NH-gMK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aBh-iB-6OP" secondAttribute="bottom" constant="10" id="RLu-J6-cXO"/>
@@ -144,6 +149,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="b26-TV-nsN" id="TFK-70-5qJ"/>
                         <outlet property="counterLabel" destination="p3D-6s-fGA" id="LAq-ee-4yd"/>
                         <outlet property="imageView" destination="3sx-TV-WzO" id="Sxi-ju-nc5"/>
                         <outlet property="noButton" destination="Dwf-HL-irg" id="GYK-DS-9hg"/>
